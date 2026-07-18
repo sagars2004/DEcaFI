@@ -3,7 +3,7 @@ import { useMidnight } from '../midnight/MidnightContext';
 import { VirtualCard } from './VirtualCard';
 import { MockCheckout } from './MockCheckout';
 import { Loader2 } from 'lucide-react';
-
+import Advanced2 from './ui/8bit-advanced2';
 const generateSeed = () => {
   const arr = new Uint8Array(32);
   window.crypto.getRandomValues(arr);
@@ -57,20 +57,20 @@ export const Dashboard: React.FC = () => {
     }
   };
 
-  if (!account) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-[50vh] text-center">
-        <h2 className="text-3xl font-bold mb-4 text-slate-100">Welcome to DEcaFI</h2>
-        <p className="text-slate-400 max-w-md mb-8">
-          Confidential virtual cards for decentralized finance. Connect your Lace wallet to mint a single-use card.
-        </p>
-      </div>
-    );
-  }
-
   return (
     <div className="max-w-4xl mx-auto py-12">
-      {!activeCard ? (
+      <div className="mb-12 border border-slate-700/50 rounded-2xl overflow-hidden glass-panel retro dark">
+        <Advanced2 />
+      </div>
+      
+      {!account ? (
+        <div className="flex flex-col items-center justify-center py-12 text-center">
+          <h2 className="text-3xl font-bold mb-4 text-slate-100">Welcome to DEcaFI</h2>
+          <p className="text-slate-400 max-w-md mx-auto mb-8">
+            Confidential virtual cards for decentralized finance. Connect your Lace wallet to mint a single-use card.
+          </p>
+        </div>
+      ) : !activeCard ? (
         <div className="glass-panel p-8 max-w-md mx-auto">
           <h2 className="text-2xl font-bold mb-6 text-slate-100">Mint Virtual Card</h2>
           <form onSubmit={handleMint} className="space-y-6">
