@@ -1,53 +1,59 @@
-pragma language_version >= 0.14.0;
+pragma language_version >= 0.23;
 
 import CompactStandardLibrary;
 
 // Public ledger state
-export ledger commitments: Map<Bytes<32>, boolean>;
-export ledger spent_nullifiers: Map<Bytes<32>, boolean>;
+export ledger commitments: Map<Bytes<32>, Boolean>;
+export ledger spent_nullifiers: Map<Bytes<32>, Boolean>;
 
 // Circuit: mintCard(limit: Uint<64>, expiry: Uint<64>) -> commitment
 export circuit mintCard(limit: Uint<64>, expiry: Uint<64>, nullifier_seed: Bytes<32>): Bytes<32> {
     // derive a commitment = hash(limit, expiry, secret nullifier seed)
-    // We use a mock sha256 or primitive hash from standard library
-    // The exact hash function will depend on the Compact StdLib imported
-    const commitment = std::crypto::sha256(concat(limit as Bytes, expiry as Bytes, nullifier_seed));
+    const commitment = persistentHash<Vector<4, Bytes<32>>>([
+        pad(32, "decafi:commit:"),
+        limit as Field as Bytes<32>,
+        expiry as Field as Bytes<32>,
+        nullifier_seed
+    ]);
     
     // write commitment to public ledger state
-    commitments.insert(commitment, true);
-    
-    // write {limit, expiry, seed} to private state
-    // Note: In Midnight, writing to private state is typically managed 
-    // by the off-chain code (e.g. Midnight.js / DApp connector). 
-    // The circuit acts as the proving mechanism.
+    commitments.insert(disclose(commitment), disclose(true));
     
     return commitment;
 }
 
 // Circuit: spend(proof, amount: Uint<64>) -> approved: Bool
 // Inputs limit, expiry, nullifier_seed, and current_time are passed as private inputs to the proof
-export circuit spend(commitment: Bytes<32>, amount: Uint<64>, limit: Uint<64>, expiry: Uint<64>, nullifier_seed: Bytes<32>, current_time: Uint<64>): boolean {
+export circuit spend(commitment: Bytes<32>, amount: Uint<64>, limit: Uint<64>, expiry: Uint<64>, nullifier_seed: Bytes<32>, current_time: Uint<64>): Boolean {
     // Reconstruct commitment to ensure the provided private variables match the on-chain commitment
-    const expected_commitment = std::crypto::sha256(concat(limit as Bytes, expiry as Bytes, nullifier_seed));
-    assert expected_commitment == commitment "Commitment mismatch: invalid proof data";
+    const expected_commitment = persistentHash<Vector<4, Bytes<32>>>([
+        pad(32, "decafi:commit:"),
+        limit as Field as Bytes<32>,
+        expiry as Field as Bytes<32>,
+        nullifier_seed
+    ]);
+    assert(expected_commitment == commitment, "Commitment mismatch: invalid proof data");
     
     // verifies commitment exists in public state
-    assert commitments.member(commitment) "Commitment not found in public ledger";
+    assert(commitments.member(disclose(commitment)), "Commitment not found in public ledger");
     
     // asserts amount <= limit
-    assert amount <= limit "Spend denied: amount exceeds authorized limit";
+    assert(amount <= limit, "Spend denied: amount exceeds authorized limit");
     
     // asserts current_time < expiry
-    assert current_time < expiry "Spend denied: card has expired";
+    assert(current_time < expiry, "Spend denied: card has expired");
     
     // derives nullifier from the seed
-    const nullifier = std::crypto::sha256(concat(nullifier_seed, "spend" as Bytes));
+    const nullifier = persistentHash<Vector<2, Bytes<32>>>([
+        pad(32, "decafi:null:"),
+        nullifier_seed
+    ]);
     
-    // asserts nullifier(commitment) not in spent-set
-    assert !spent_nullifiers.member(nullifier) "Spend denied: nullifier already used";
+    // asserts nullifier not in spent-set
+    assert(!spent_nullifiers.member(disclose(nullifier)), "Spend denied: nullifier already used");
     
     // on success: adds nullifier to spent-set
-    spent_nullifiers.insert(nullifier, true);
+    spent_nullifiers.insert(disclose(nullifier), disclose(true));
     
     // returns approved
     return true;

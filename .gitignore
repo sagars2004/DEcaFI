@@ -1,2 +1,7 @@
 DEcaFI_PRD.md
 .env*
+node_modules/
+.midnight-state.json
+.midnight-wallet-state/
+midnight-level-db/
+contracts/managed/
