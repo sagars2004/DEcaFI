@@ -25,7 +25,7 @@ globalThis.WebSocket = WebSocket;
 
 // Identifier under which this contract's private state is stored. The
 // hello-world contract has no witnesses, so its private state is empty ({}).
-const PRIVATE_STATE_ID = 'maskPrivateState';
+const PRIVATE_STATE_ID = 'decafiPrivateState';
 
 // ─── Network configuration ─────────────────────────────────────────────────────
 //
@@ -112,7 +112,7 @@ async function createProviders(walletCtx: WalletContext) {
 
   return {
     privateStateProvider: levelPrivateStateProvider({
-      privateStateStoreName: 'hello-world-state',
+      privateStateStoreName: 'decafi-state',
       accountId,
       privateStoragePasswordProvider: () => privateStatePassword,
     }),
@@ -284,9 +284,9 @@ async function main() {
   for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
     try {
       // Midnight.js 4.1.x supplies private state via privateStateId +
-      // initialPrivateState (empty here — the hello-world contract has no
+      // initialPrivateState (empty here — the mask contract has no
       // witnesses). args is the contract constructor's arguments: empty for
-      // hello-world's no-arg constructor. (Statically-typed contracts can omit
+      // mask's no-arg constructor. (Statically-typed contracts can omit
       // args entirely; this script loads the contract dynamically, so the
       // conditional args type widens to any[] and an explicit [] is required.)
       deployed = await deployContract(providers, {

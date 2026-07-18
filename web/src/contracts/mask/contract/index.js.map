@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "file": "index.js",
+  "sourceRoot": "../../../../",
+  "sources": ["contracts/mask.compact", "compiler/standard-library.compact"],
+  "names": [],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;EAAA;;;;;;;;;;MASA,AAAA,QAaC;;;;;cAbuB,OAAe;cAAE,QAAgB;cAAE,gBAAyB;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;yCAA5D,OAAe,+BAAE,QAAgB,+BAAE,gBAAyB;;;;;;;;;0CAA5D,OAAe;0CAAE,QAAgB;0CAAE,gBAAyB;;;OAanF;MAID,AAAA,KAiCC;;;;;cAjCoB,YAAqB;cAAE,QAAgB;cAAE,OAAe;cAAE,QAAgB;cAAE,gBAAyB;cAAE,cAAsB;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;yCAA7H,YAAqB,+BAAE,QAAgB,+BAAE,OAAe,+BAAE,QAAgB,+BAAE,gBAAyB,+BAAE,cAAsB;;;;;;;;;uCAA7H,YAAqB;uCAAE,QAAgB;uCAAE,OAAe;uCAAE,QAAgB;uCAAE,gBAAyB;uCAAE,cAAsB;;;OAiCjJ;;;;;;;;;;GACA;EA5DD;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAKA;;;;;;;;;;yEAAmD;IACnD;;;;;;;;;;yEAAwD;;;;;;;GAsDvD;EC5DD,AAAA,kBAAA;oEAAA;;;EAAA,AAAA,kBAAA;oEAAA;;;EDSA,AAAA,WAaC,4BAbuB,OAAe,EAAE,QAAgB,EAAE,gBAAyB;UAE1E,YAKJ;;sFAHE,OAAK;;;sFACL,QAAM;;iDACN,gBAAc;IAIlB;;;;;;;;;;2HAA4B,YAAU;;;;;;wEAA3B;WAEJ,YAAU;GACpB;EAID,AAAA,QAiCC;;WAjCoB,YAAqB;WAAE,QAAgB;WAAE,OAAe;WAAE,QAAgB;WAAE,gBAAyB;WAAE,cAAsB;;UAExI,qBAKJ;;+FAHE,OAAK;;;+FACL,QAAM;;0DACN,gBAAc;0CAEX,qBAAmB,EAAI,YAAU;;oDAGjC;;;;;;;;;;;2KAA4B,YAAU;;;;yHAA3B;;4BAGX,QAAM,IAAI,OAAK;;4BAGf,cAAY,GAAG,QAAM;;UAGtB,WAGJ;gDADE,gBAAc;qDAIV;;;;;;;;;;;4KAAiC,WAAS;;;;0HAA1B;;IAGxB;;;;;;;;;;2HAAiC,WAAS;;;;;;wEAA1B;;GAInB;;;;;;;;;;;;;;;;;;;;IAtDD;;;;;uCAAA;;;;;;;;;;;;;;;;4GAAmD;;;;;;uCAAnD;;;;;;;;;;;;4GAAmD;;;;;;;;;;;;;;uCAAnD;;;;;;;;;;;;;;;4GAAmD;;;;;;;;;;;;;;uCAAnD;;;;;;;;;;;;;;;;;4GAAmD;;;;;;;;;KAAA;IACnD;;;;;uCAAA;;;;;;;;;;;;;;;;4GAAwD;;;;;;uCAAxD;;;;;;;;;;;;4GAAwD;;;;;;;;;;;;;;uCAAxD;;;;;;;;;;;;;;;4GAAwD;;;;;;;;;;;;;;uCAAxD;;;;;;;;;;;;;;;;;4GAAwD;;;;;;;;;KAAA;;;;;;;;;;"
+}
