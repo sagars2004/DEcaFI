@@ -8,6 +8,14 @@ interface MockCheckoutProps {
 
 type CheckoutState = 'idle' | 'processing' | 'approved' | 'denied';
 
+const fromHex = (hexString: string) => {
+  const bytes = new Uint8Array(Math.ceil(hexString.length / 2));
+  for (let i = 0; i < bytes.length; i++) {
+    bytes[i] = parseInt(hexString.substr(i * 2, 2), 16);
+  }
+  return bytes;
+};
+
 export const MockCheckout: React.FC<MockCheckoutProps> = ({ activeCard }) => {
   const { contract } = useMidnight();
   const [amount, setAmount] = useState<string>('49.99');
@@ -28,6 +36,9 @@ export const MockCheckout: React.FC<MockCheckoutProps> = ({ activeCard }) => {
       const currentTs = Math.floor(Date.now() / 1000);
       const expiryTs = Math.floor(activeCard.expiry.getTime() / 1000);
 
+      const commitmentBytes = fromHex(activeCard.commitment);
+      const seedBytes = fromHex(activeCard.seed);
+
       console.log('Initiating spend circuit with:', { 
         commitment: activeCard.commitment, 
         amount: spendAmount, 
@@ -38,13 +49,12 @@ export const MockCheckout: React.FC<MockCheckoutProps> = ({ activeCard }) => {
       });
 
       // The spend circuit takes: (commitment, amount, limit, expiry, nullifier_seed, current_time)
-      // The commitment is public. The rest are private variables used to generate the proof.
       const tx = await contract.callTx.spend(
-        activeCard.commitment,
+        commitmentBytes,
         BigInt(spendAmount),
         BigInt(activeCard.limit),
         BigInt(expiryTs),
-        activeCard.seed,
+        seedBytes,
         BigInt(currentTs)
       );
 

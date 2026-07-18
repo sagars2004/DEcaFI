@@ -1,5 +1,6 @@
 import { WebSocket } from 'ws';
 import { resolveNetwork, getOrCreateSeed } from './network';
+import { MidnightBech32m, ShieldedAddress, UnshieldedAddress } from '@midnight-ntwrk/wallet-sdk/address-format';
 import { createWallet, unshieldedToken } from './wallet';
 
 globalThis.WebSocket = WebSocket as any;
@@ -22,12 +23,12 @@ async function main() {
   const recipe = await walletCtx.wallet.transferTransaction(
     [
       {
-        type: 'unshielded',
+        type: 'shielded',
         outputs: [
           {
-            type: unshieldedToken(),
-            receiverAddress: address,
-            amount: 1000n, // 1000 tNIGHT
+            type: unshieldedToken().raw, // Token ID for tNIGHT
+            receiverAddress: MidnightBech32m.parse(address).decode(ShieldedAddress, network),
+            amount: 20_000_000_000n, // 20,000 tNIGHT
           },
         ],
       },

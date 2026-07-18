@@ -4,12 +4,13 @@ import { VirtualCard } from './VirtualCard';
 import { MockCheckout } from './MockCheckout';
 import { Loader2 } from 'lucide-react';
 
-// In browser, we can use crypto.getRandomValues instead of node crypto
 const generateSeed = () => {
   const arr = new Uint8Array(32);
   window.crypto.getRandomValues(arr);
-  return Array.from(arr).map(b => b.toString(16).padStart(2, '0')).join('');
+  return arr;
 };
+
+const toHex = (arr: Uint8Array) => Array.from(arr).map(b => b.toString(16).padStart(2, '0')).join('');
 
 export const Dashboard: React.FC = () => {
   const { contract, account } = useMidnight();
@@ -30,23 +31,23 @@ export const Dashboard: React.FC = () => {
       const expiryDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
       const expiryTs = Math.floor(expiryDate.getTime() / 1000);
       const seed = generateSeed();
+      const seedHex = toHex(seed);
 
-      console.log('Initiating mintCard circuit with:', { numLimit, expiryTs, seed });
+      console.log('Initiating mintCard circuit with:', { numLimit, expiryTs, seedHex });
 
-      // Call the mintCard circuit. The circuit takes limit, expiry, and seed (as hex string)
-      // Note: we pass strings/numbers based on the generated contract types.
       const tx = await contract.callTx.mintCard(BigInt(numLimit), BigInt(expiryTs), seed);
       
       console.log('Mint tx successful!', tx);
       
-      // Get the commitment from public state (just simulating it here for UI since it returns it)
-      // Actually, the circuit returns the commitment bytes, but we might just extract it or use the seed as reference
-      // Let's assume the transaction succeeds and we have our card
+      // The circuit actually returns the commitment bytes, we can use it!
+      const commitmentBytes = tx.public.result;
+      const commitmentHex = commitmentBytes ? toHex(commitmentBytes) : seedHex;
+
       setActiveCard({
         limit: numLimit,
         expiry: expiryDate,
-        commitment: seed, // Using seed as pseudo-commitment for the UI display
-        seed
+        commitment: commitmentHex,
+        seed: seedHex
       });
     } catch (err) {
       console.error('Minting failed', err);

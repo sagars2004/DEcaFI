@@ -45,20 +45,27 @@ export const MidnightProvider: React.FC<{ children: ReactNode }> = ({ children }
     setError(null);
     try {
       const mnWindow = (window as any).midnight;
-      if (!mnWindow?.mnLace) {
-        throw new Error('Lace wallet extension not found. Please install Lace with Midnight support.');
+      if (!mnWindow) {
+        throw new Error('Midnight wallet extension not found. Please install Lace with Midnight support.');
       }
 
+      // Lace might inject as `lace` or `mnLace`
+      const walletKey = Object.keys(mnWindow).find(k => mnWindow[k].enable || mnWindow[k].connect);
+      if (!walletKey) {
+        throw new Error(`Wallet API not found in window.midnight. (Available: ${Object.keys(mnWindow).join(', ')})`);
+      }
+
+      const walletApi = mnWindow[walletKey];
       // 1. Connect to Lace Wallet
-      const laceWallet = await mnWindow.mnLace.enable();
+      const laceWallet = walletApi.enable ? await walletApi.enable() : await walletApi.connect('undeployed');
       setWallet(laceWallet);
 
-      // We can grab the first available account
-      const accounts = await laceWallet.getAccounts();
-      if (!accounts || accounts.length === 0) {
-        throw new Error('No accounts found in Lace wallet.');
+      // We can grab the unshielded address
+      const addressObj = await laceWallet.getUnshieldedAddress();
+      if (!addressObj?.unshieldedAddress) {
+        throw new Error('No unshielded address found in Lace wallet.');
       }
-      setAccount(accounts[0].address);
+      setAccount(addressObj.unshieldedAddress);
 
       // 2. Set up the providers
       const zkConfigProvider = new FetchZkConfigProvider(window.location.origin + '/mask', fetch.bind(window));
@@ -66,7 +73,7 @@ export const MidnightProvider: React.FC<{ children: ReactNode }> = ({ children }
       const p: MidnightProviders = {
         privateStateProvider: levelPrivateStateProvider({
           privateStateStoreName: 'decafi-state',
-          accountId: accounts[0].address,
+          accountId: addressObj.unshieldedAddress,
           privateStoragePasswordProvider: () => 'Local-Devnet-Development-Placeholder-1', // Match backend dev password
         }),
         publicDataProvider: indexerPublicDataProvider(NETWORK_CONFIG.indexer, NETWORK_CONFIG.indexerWS),
@@ -92,7 +99,9 @@ export const MidnightProvider: React.FC<{ children: ReactNode }> = ({ children }
       setContract(contractHandle);
     } catch (err: any) {
       console.error('Wallet connection error:', err);
-      setError(err.message || String(err));
+      const msg = err.message || String(err);
+      setError(msg);
+      alert(`Wallet Connection Failed: ${msg}`);
     } finally {
       setIsConnecting(false);
     }
