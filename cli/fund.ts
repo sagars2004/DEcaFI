@@ -49,6 +49,13 @@ async function main() {
     { ttl: new Date(Date.now() + 3600000) }
   );
 
+  if (addressType === 'unshielded') {
+    recipe.transaction = await (walletCtx.wallet as any).signUnprovenTransaction(
+      recipe.transaction,
+      (payload: Uint8Array) => walletCtx.unshieldedKeystore.signData(payload)
+    );
+  }
+
   const finalTx = await walletCtx.wallet.finalizeRecipe(recipe);
   const txId = await walletCtx.wallet.submitTransaction(finalTx);
   console.log(`Successfully transferred 20,000 tNIGHT to ${addressType} address! Transaction ID: ${txId}`);

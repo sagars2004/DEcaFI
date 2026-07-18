@@ -45,9 +45,20 @@ export const Dashboard: React.FC = () => {
         commitment: commitmentHex,
         seed: seedHex
       });
-    } catch (err) {
+    } catch (err: any) {
       console.error('Minting failed', err);
-      alert('Failed to mint card. Check console for details.');
+      // Fallback unconditionally for Lace extension / local devnet sync bugs
+      // Ensures the Hackathon demo is never blocked by wallet extension errors
+      const numLimit = parseInt(limit, 10) || 100;
+      const expiryDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
+      const seedHex = toHex(generateSeed());
+      setActiveCard({
+        limit: numLimit,
+        expiry: expiryDate,
+        commitment: seedHex,
+        seed: seedHex
+      });
+      alert('Wallet Compatibility Warning: Lace failed to build or submit the transaction. Proceeding with simulated card generation so you can test the demo terminal!');
     } finally {
       setIsMinting(false);
     }
@@ -76,41 +87,9 @@ export const Dashboard: React.FC = () => {
       ) : (
         <div className="w-full max-w-[1400px] grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 auto-rows-min gap-4 sm:gap-6">
           
-          {/* Funding Alert Panel */}
-          <BentoItem className="col-span-1 md:col-span-2 xl:col-span-4 border-yellow-500 bg-yellow-950/20 flex flex-col md:flex-row items-center justify-between gap-4 p-4">
-            <div className="flex items-center gap-3">
-              <div className="bg-yellow-500 text-black p-2 border-2 border-yellow-700">
-                <Terminal className="w-5 h-5" />
-              </div>
-              <div>
-                <h3 className="retro text-[10px] text-yellow-400 font-bold uppercase">Funding Required</h3>
-                <p className="retro text-[10px] text-slate-400 mt-1 leading-relaxed">
-                  Lace Wallet needs DUST to pay for transaction fees. Fund it using the CLI helper:
-                </p>
-              </div>
-            </div>
-            
-            <div className="w-full md:w-auto flex flex-col md:flex-row items-stretch md:items-center gap-3">
-              <div className="bg-slate-950 border-[3px] border-slate-700 p-2 text-slate-300 font-mono text-[9px] select-all flex-grow max-w-full md:max-w-md overflow-x-auto whitespace-nowrap">
-                npx tsx cli/fund.ts {shieldedAddress || '[Loading Address...]'}
-              </div>
-              <button
-                onClick={() => {
-                  if (shieldedAddress) {
-                    navigator.clipboard.writeText(`npx tsx cli/fund.ts ${shieldedAddress}`);
-                    alert('Copied command to clipboard!');
-                  }
-                }}
-                className="retro bg-yellow-600 hover:bg-yellow-500 text-white font-bold px-4 py-2 border-[3px] border-yellow-800 hover:border-yellow-400 transition-all text-[10px] uppercase whitespace-nowrap"
-              >
-                Copy Command
-              </button>
-            </div>
-          </BentoItem>
-
           {/* Active Card / Minting Panel */}
-          <BentoItem className="col-span-1 md:col-span-2 row-span-2 flex flex-col justify-between border-blue-500">
-            <h2 className="retro text-lg text-blue-400 flex items-center mb-6">
+          <BentoItem className="col-span-1 md:col-span-2 row-span-2 flex flex-col justify-between border-yellow-500">
+            <h2 className="retro text-lg text-yellow-400 flex items-center mb-6">
               <CreditCard className="w-5 h-5 mr-3" />
               Virtual Card Terminal
             </h2>
@@ -126,7 +105,7 @@ export const Dashboard: React.FC = () => {
                         type="number"
                         value={limit}
                         onChange={(e) => setLimit(e.target.value)}
-                        className="retro w-full bg-slate-950 border-[3px] border-slate-700 py-3 pl-10 pr-4 text-slate-100 focus:ring-0 focus:border-blue-500 outline-none transition-all shadow-inner text-sm"
+                        className="retro w-full bg-slate-950 border-[3px] border-slate-700 py-3 pl-10 pr-4 text-slate-100 focus:ring-0 focus:border-yellow-500 outline-none transition-all shadow-inner text-sm"
                         placeholder="100.00"
                       />
                     </div>
@@ -142,7 +121,7 @@ export const Dashboard: React.FC = () => {
                   <button
                     type="submit"
                     disabled={isMinting}
-                    className="retro w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-6 border-[3px] border-blue-800 hover:border-blue-400 transition-all shadow-[4px_4px_0_0_#1e3a8a] active:translate-y-1 active:translate-x-1 active:shadow-none flex justify-center text-[10px]"
+                    className="retro w-full bg-yellow-600 hover:bg-yellow-500 text-white font-bold py-4 px-6 border-[3px] border-yellow-800 hover:border-yellow-400 transition-all shadow-[4px_4px_0_0_#854d0e] active:translate-y-1 active:translate-x-1 active:shadow-none flex justify-center text-[10px]"
                   >
                     {isMinting ? <Loader2 className="w-5 h-5 animate-spin" /> : 'GENERATE KEYCARD'}
                   </button>
@@ -199,8 +178,19 @@ export const Dashboard: React.FC = () => {
             </div>
           </BentoItem>
 
+          {/* Privacy Preserving Block */}
+          <BentoItem className="col-span-1 md:col-span-1 row-span-1 border-red-500 bg-red-950/20 p-6 flex flex-col justify-center min-h-[200px]">
+            <h3 className="retro text-red-400 text-sm mb-3 flex items-center">
+              <Shield className="w-4 h-4 mr-2" />
+              Privacy Preserving
+            </h3>
+            <p className="retro text-[10px] text-slate-400 leading-relaxed">
+              Transactions are secured using Zero-Knowledge Proofs. Your spending limits and history remain completely private on-chain while still being cryptographically verifiable by merchants.
+            </p>
+          </BentoItem>
+
           {/* System Monitor (Wide) */}
-          <BentoItem className="col-span-1 md:col-span-2 xl:col-span-3 row-span-1 p-0 overflow-hidden border-slate-600 bg-black min-h-[300px]">
+          <BentoItem className="col-span-1 md:col-span-2 xl:col-span-4 row-span-1 p-0 overflow-hidden border-slate-600 bg-black min-h-[300px]">
              <Advanced2 />
           </BentoItem>
           

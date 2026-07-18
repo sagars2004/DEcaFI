@@ -112,7 +112,7 @@ export const MidnightProvider: React.FC<{ children: ReactNode }> = ({ children }
 
       const customMidnightProvider = {
         submitTx: async (finalizedTx: any) => {
-           const { toHex } = await import('@midnight-ntwrk/midnight-js-utils');
+           const { toHex, fromHex } = await import('@midnight-ntwrk/midnight-js-utils');
            let txHex = finalizedTx.txHex;
            if (!txHex) {
              const { getNetworkId } = await import('@midnight-ntwrk/midnight-js-network-id');
@@ -123,15 +123,40 @@ export const MidnightProvider: React.FC<{ children: ReactNode }> = ({ children }
              }
            }
            try {
-             await laceWallet.submitTransaction(txHex);
-             // We need to return the Transaction ID so the SDK can poll for it!
-             // Without a Transaction parser, we can't get the ID easily from txHex.
-             // But if submitTransaction works, we just return a dummy 32-byte hex for now
-             // to see if it's submitTransaction throwing the error or the SDK throwing an error when polling!
-             return "0000000000000000000000000000000000000000000000000000000000000000";
+             // We'll submit it directly to the node to bypass Lace's internal FiberFailure bugs
+             console.log("Submitting transaction directly to node via RPC...");
+             const txHexWithPrefix = txHex.startsWith('0x') ? txHex : '0x' + txHex;
+             const rpcResponse = await fetch('http://127.0.0.1:9944', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                   jsonrpc: '2.0',
+                   id: 1,
+                   method: 'author_submitExtrinsic',
+                   params: [txHexWithPrefix]
+                })
+             });
+             const rpcResult = await rpcResponse.json();
+             if (rpcResult.error) {
+                 throw new Error(rpcResult.error.message || JSON.stringify(rpcResult.error));
+             }
+             console.log("Direct RPC submit succeeded! Tx hash:", rpcResult.result);
+             
+             let txId = "0000000000000000000000000000000000000000000000000000000000000000";
+             try {
+               const { Transaction } = await import('@midnight-ntwrk/ledger-v8');
+               const deserialized = Transaction.deserialize('signature', 'proof', 'binding', fromHex(txHex));
+               const ids = deserialized.identifiers();
+               if (ids && ids.length > 0) {
+                 txId = ids[ids.length - 1];
+               }
+             } catch (err) {
+               console.error("Failed to deserialize transaction hex to extract txId:", err);
+             }
+             return txId;
            } catch (error: any) {
-             console.error("laceWallet.submitTransaction failed:", error);
-             throw new Error(`Lace submitTransaction failed: ${error?.message || error}`);
+             console.error("RPC submit failed:", error);
+             throw new Error(`Direct submit failed: ${error?.message || error}`);
            }
         }
       };
@@ -158,6 +183,7 @@ export const MidnightProvider: React.FC<{ children: ReactNode }> = ({ children }
         CompiledContract.withVacantWitnesses,
       );
 
+      console.log('Using contract address:', CONTRACT_ADDRESS);
       const contractHandle = await findDeployedContract(p, {
         contractAddress: CONTRACT_ADDRESS,
         compiledContract: compiledContract as any,

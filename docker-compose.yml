@@ -8,11 +8,21 @@ services:
     image: midnightntwrk/midnight-node:0.22.5
     ports:
       - "9944:9944"
+    environment:
+      - MIDNIGHT_USE_MAIN_CHAIN_FOLLOWER_MOCK=true
+      - USE_MAIN_CHAIN_FOLLOWER_MOCK=true
+      - PC_USE_MAIN_CHAIN_FOLLOWER_MOCK=true
+      - MIDNIGHT_MOCK_REGISTRATIONS_FILE=/res/mock-bridge-data/default-registrations.json
+      - MOCK_REGISTRATIONS_FILE=/res/mock-bridge-data/default-registrations.json
+      - PC_MOCK_REGISTRATIONS_FILE=/res/mock-bridge-data/default-registrations.json
     command: --dev --rpc-external --rpc-cors all
 
   indexer:
     image: midnightntwrk/indexer-standalone:4.0.2
     ports:
       - "8088:8088"
+    environment:
+      - APP__INFRA__SECRET=681825f108f32f634c04d0cc80d4632d2a8cad00ada2764a0132616dc73aa2e3
+      - APP__INFRA__NODE__URL=ws://node:9944
     depends_on:
       - node
