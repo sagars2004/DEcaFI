@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
-@plugin "tailwindcss-animate";
 
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@plugin "tailwindcss-animate";
 
 :root {
   --radius: 0.5rem;
@@ -59,7 +59,7 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-.retro {
+@utility retro {
   font-family: 'Press Start 2P', monospace;
   letter-spacing: -0.5px;
 }
@@ -69,18 +69,32 @@
     @apply bg-slate-950 text-slate-50 antialiased;
     font-family: 'Inter', system-ui, sans-serif;
   }
+  
+  body::after {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 50;
+    background-size: 100% 4px, 6px 100%;
+    pointer-events: none;
+  }
 }
 
 @layer components {
-  .glass-panel {
-    @apply bg-slate-900/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl shadow-xl;
+  .retro-panel {
+    @apply border-4 border-slate-700 bg-slate-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,0.5)] p-8;
   }
   
   .btn-primary {
-    @apply relative overflow-hidden rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 px-6 py-3 font-semibold text-white shadow-lg transition-all hover:scale-[1.02] hover:shadow-blue-500/25 active:scale-95 disabled:opacity-50 disabled:pointer-events-none;
+    @apply retro relative border-4 border-blue-500 bg-blue-600 px-6 py-3 text-white shadow-[4px_4px_0px_0px_rgba(59,130,246,0.5)] transition-all hover:bg-blue-500 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(59,130,246,0.5)] active:translate-y-1 active:shadow-none disabled:opacity-50 disabled:pointer-events-none;
   }
   
   .btn-secondary {
-    @apply rounded-xl bg-slate-800 px-6 py-3 font-semibold text-slate-200 border border-slate-700 transition-all hover:bg-slate-700 active:scale-95 disabled:opacity-50 disabled:pointer-events-none;
+    @apply retro border-4 border-slate-700 bg-slate-800 px-6 py-3 text-slate-200 shadow-[4px_4px_0px_0px_rgba(51,65,85,0.5)] transition-all hover:bg-slate-700 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(51,65,85,0.5)] active:translate-y-1 active:shadow-none disabled:opacity-50 disabled:pointer-events-none;
   }
 }

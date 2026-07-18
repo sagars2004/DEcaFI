@@ -58,8 +58,8 @@ const defaultMetrics: MetricCard[] = [
 ];
 
 export default function Advanced2({
-  title = "Stats Dashboard",
-  description = "Real-time metrics from the battlefield",
+  title = "Network Status",
+  description = "",
   metrics = defaultMetrics,
   className,
 }: Advanced2Props) {

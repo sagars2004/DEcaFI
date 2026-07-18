@@ -70,61 +70,61 @@ export const MockCheckout: React.FC<MockCheckoutProps> = ({ activeCard }) => {
   return (
     <div>
       <div className="flex items-center space-x-3 mb-6">
-        <div className="bg-blue-500/20 p-3 rounded-xl">
+        <div className="border-4 border-slate-700 bg-slate-800 p-2">
           <ShoppingBag className="w-6 h-6 text-blue-400" />
         </div>
-        <h3 className="text-xl font-semibold text-slate-100">Merchant Checkout</h3>
+        <h3 className="retro text-[14px] text-slate-100">Merchant Checkout</h3>
       </div>
 
       {status === 'approved' ? (
         <div className="text-center py-8 space-y-4">
-          <CheckCircle className="w-16 h-16 text-green-400 mx-auto" />
-          <h4 className="text-2xl font-bold text-slate-100">Payment Approved!</h4>
-          <p className="text-slate-400 text-sm">Your virtual card authorized the transaction successfully without revealing your identity.</p>
-          <button onClick={() => setStatus('idle')} className="btn-secondary mt-4">New Transaction</button>
+          <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-4" />
+          <h4 className="retro text-lg text-green-400">Payment Approved!</h4>
+          <p className="retro text-slate-400 text-[10px] leading-5">Your virtual card authorized the transaction successfully without revealing your identity.</p>
+          <button onClick={() => setStatus('idle')} className="btn-secondary w-full mt-4 text-[10px]">New Transaction</button>
         </div>
       ) : status === 'denied' ? (
         <div className="text-center py-8 space-y-4">
-          <XCircle className="w-16 h-16 text-red-400 mx-auto" />
-          <h4 className="text-2xl font-bold text-slate-100">Payment Denied</h4>
-          <p className="text-red-300 text-sm">{errorMessage}</p>
-          <button onClick={() => setStatus('idle')} className="btn-secondary mt-4">Try Again</button>
+          <XCircle className="w-12 h-12 text-red-400 mx-auto mb-4" />
+          <h4 className="retro text-lg text-red-400">Payment Denied</h4>
+          <p className="retro text-red-300 text-[10px] leading-5">{errorMessage}</p>
+          <button onClick={() => setStatus('idle')} className="btn-secondary w-full mt-4 text-[10px]">Try Again</button>
         </div>
       ) : (
         <form onSubmit={handleCheckout} className="space-y-6">
           <div className="space-y-4">
-            <div className="flex justify-between items-center py-3 border-b border-slate-700">
-              <span className="text-slate-400">Cart Total</span>
-              <div className="flex items-center w-32">
-                <span className="text-slate-300 mr-2">$</span>
+            <div className="flex justify-between items-center py-3 border-b-4 border-slate-700">
+              <span className="retro text-[10px] text-slate-400">Cart Total</span>
+              <div className="flex items-center w-36">
+                <span className="retro text-slate-300 mr-2 text-[10px]">$</span>
                 <input
                   type="number"
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg py-1 px-2 text-right text-slate-100 focus:ring-1 focus:ring-blue-500 outline-none"
+                  className="retro w-full bg-slate-950 border-4 border-slate-700 py-2 px-2 text-right text-slate-100 focus:border-blue-500 outline-none text-[10px] shadow-inner"
                   step="0.01"
                 />
               </div>
             </div>
             <div className="flex justify-between items-center py-3">
-              <span className="text-slate-200 font-medium">Total to Pay</span>
-              <span className="text-2xl font-bold text-white">${parseFloat(amount || '0').toFixed(2)}</span>
+              <span className="retro text-[10px] text-slate-200">Total to Pay</span>
+              <span className="retro text-sm text-white">${parseFloat(amount || '0').toFixed(2)}</span>
             </div>
           </div>
 
           <button
             type="submit"
             disabled={status === 'processing'}
-            className="w-full bg-white text-slate-900 font-bold py-4 rounded-xl shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-all flex items-center justify-center space-x-2 disabled:opacity-50 disabled:pointer-events-none"
+            className="btn-primary w-full flex items-center justify-center space-x-2 text-[10px]"
           >
             {status === 'processing' ? (
               <Loader2 className="w-5 h-5 animate-spin" />
             ) : (
-              <span>Pay Confidentially</span>
+              <span className="pt-1">Pay Confidentially</span>
             )}
           </button>
           
-          <p className="text-xs text-center text-slate-500 mt-4">
+          <p className="retro text-[8px] leading-4 text-center text-slate-500 mt-4">
             A Zero-Knowledge proof will be generated locally. The merchant never sees your real card details or spending history.
           </p>
         </form>

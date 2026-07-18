@@ -7,9 +7,9 @@ export const WalletConnect: React.FC = () => {
 
   if (account) {
     return (
-      <div className="flex items-center space-x-2 bg-slate-800/80 backdrop-blur border border-slate-700/50 px-4 py-2 rounded-full shadow-lg">
-        <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-        <span className="text-sm font-medium font-mono text-slate-300">
+      <div className="flex items-center space-x-2 bg-slate-800 border-4 border-slate-700 px-4 py-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)]">
+        <div className="w-3 h-3 bg-green-400 animate-pulse border-2 border-green-600" />
+        <span className="retro text-xs text-slate-300 pt-1">
           {account.slice(0, 8)}...{account.slice(-6)}
         </span>
       </div>
@@ -27,7 +27,7 @@ export const WalletConnect: React.FC = () => {
       ) : (
         <Wallet className="w-5 h-5" />
       )}
-      <span>{isConnecting ? 'Connecting...' : 'Connect Lace'}</span>
+      <span className="pt-1">{isConnecting ? 'Connecting...' : 'Connect Lace'}</span>
     </button>
   );
 };

@@ -1,0 +1,81 @@
+[
+
+{"name":"@midnight-ntwrk/wallet-sdk-facade","keywords":[],"version":"4.0.1","description":"> **Note:** It is recommended to use the [`@midnight-ntwrk/wallet-sdk`](../wallet-sdk/README.md) barrel package, which > re-exports this and all other wallet SDK packages through a single dependency.","sanitized_name":"@midnight-ntwrk/wallet-sdk-facade","publisher":{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"},"maintainers":[{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"}],"license":"Apache-2.0","date":"2026-05-27T07:41:09.005Z","links":{"homepage":"https://github.com/midnight-ntwrk/artifacts#readme","repository":"git+https://github.com/midnight-ntwrk/artifacts.git","bugs":"https://github.com/midnight-ntwrk/artifacts/issues","npm":"https://www.npmjs.com/package/@midnight-ntwrk/wallet-sdk-facade"}}
+
+,
+
+{"name":"@midnight-ntwrk/wallet","keywords":[],"version":"5.0.0","description":"Midnight Wallet SDK is an implementation of `@midnight-ntwrk/wallet-api` enables managing private keys, transactions and interacting with decentralized applications in the Midnight blockchain.","sanitized_name":"@midnight-ntwrk/wallet","publisher":{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"},"maintainers":[{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"}],"license":"Apache-2.0","date":"2025-05-12T12:35:19.489Z","links":{"homepage":"https://github.com/midnight-ntwrk/artifacts#readme","repository":"git+https://github.com/midnight-ntwrk/artifacts.git","bugs":"https://github.com/midnight-ntwrk/artifacts/issues","npm":"https://www.npmjs.com/package/@midnight-ntwrk/wallet"}}
+
+,
+
+{"name":"@midnight-ntwrk/wallet-api","keywords":[],"version":"5.0.0","description":"This API provides a comprehensive interface for wallet operations, defining the structure of the wallet state, the methods for interacting with it, and the types and variables used within. It is implemented by the [@midnight-ntwrk/wallet](https://www.npmj","sanitized_name":"@midnight-ntwrk/wallet-api","publisher":{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"},"maintainers":[{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"}],"license":"Apache-2.0","date":"2025-05-12T12:34:43.231Z","links":{"homepage":"https://github.com/midnight-ntwrk/artifacts#readme","repository":"git+https://github.com/midnight-ntwrk/artifacts.git","bugs":"https://github.com/midnight-ntwrk/artifacts/issues","npm":"https://www.npmjs.com/package/@midnight-ntwrk/wallet-api"}}
+
+,
+
+{"name":"@midnight-ntwrk/wallet-sdk","keywords":[],"version":"1.1.0","description":"Barrel package re-exporting all Midnight Wallet SDK packages","sanitized_name":"@midnight-ntwrk/wallet-sdk","publisher":{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"},"maintainers":[{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"}],"license":"Apache-2.0","date":"2026-05-27T07:41:02.200Z","links":{"homepage":"https://github.com/midnight-ntwrk/artifacts#readme","repository":"git+https://github.com/midnight-ntwrk/artifacts.git","bugs":"https://github.com/midnight-ntwrk/artifacts/issues","npm":"https://www.npmjs.com/package/@midnight-ntwrk/wallet-sdk"}}
+
+,
+
+{"name":"@midnight-ntwrk/wallet-sdk-address-format","keywords":[],"version":"3.1.2","description":"Bech32m address encoding and decoding for the Midnight network.","sanitized_name":"@midnight-ntwrk/wallet-sdk-address-format","publisher":{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"},"maintainers":[{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"}],"license":"Apache-2.0","date":"2026-05-27T07:41:05.418Z","links":{"homepage":"https://github.com/midnight-ntwrk/artifacts#readme","repository":"git+https://github.com/midnight-ntwrk/artifacts.git","bugs":"https://github.com/midnight-ntwrk/artifacts/issues","npm":"https://www.npmjs.com/package/@midnight-ntwrk/wallet-sdk-address-format"}}
+
+,
+
+{"name":"@midnight-ntwrk/wallet-sdk-utilities","keywords":[],"version":"1.2.1","description":"Domain-agnostic utilities for the wallet SDK - common operations and types","sanitized_name":"@midnight-ntwrk/wallet-sdk-utilities","publisher":{"email":"npm-oidc-no-reply@github.com","trustedPublisher":{"oidcConfigId":"oidc:6e501c8a-a32c-413f-b4db-3912d3ffa229","id":"github"},"username":"GitHub Actions"},"maintainers":[{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"}],"license":"Apache-2.0","date":"2026-07-09T13:44:22.532Z","links":{"homepage":"https://github.com/midnightntwrk/midnight-wallet#readme","repository":"git+https://github.com/midnightntwrk/midnight-wallet.git","bugs":"https://github.com/midnightntwrk/midnight-wallet/issues","npm":"https://www.npmjs.com/package/@midnight-ntwrk/wallet-sdk-utilities"}}
+
+,
+
+{"name":"@midnight-ntwrk/wallet-sdk-runtime","keywords":[],"version":"1.0.4","description":"Runtime for the wallet variants","sanitized_name":"@midnight-ntwrk/wallet-sdk-runtime","publisher":{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"},"maintainers":[{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"}],"license":"Apache-2.0","date":"2026-05-27T07:41:22.117Z","links":{"homepage":"https://github.com/midnight-ntwrk/artifacts#readme","repository":"git+https://github.com/midnight-ntwrk/artifacts.git","bugs":"https://github.com/midnight-ntwrk/artifacts/issues","npm":"https://www.npmjs.com/package/@midnight-ntwrk/wallet-sdk-runtime"}}
+
+,
+
+{"name":"@midnight-ntwrk/dapp-connector-api","keywords":[],"version":"4.0.1","description":"Midnight DApp Connector API","sanitized_name":"@midnight-ntwrk/dapp-connector-api","publisher":{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"},"maintainers":[{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"}],"license":"Apache-2.0","date":"2026-02-17T14:02:54.042Z","links":{"homepage":"https://github.com/midnight-ntwrk/artifacts#readme","repository":"git+https://github.com/midnight-ntwrk/artifacts.git","bugs":"https://github.com/midnight-ntwrk/artifacts/issues","npm":"https://www.npmjs.com/package/@midnight-ntwrk/dapp-connector-api"}}
+
+,
+
+{"name":"@midnight-ntwrk/wallet-sdk-indexer-client","keywords":[],"version":"1.2.2","description":"Client for communicating with the Midnight indexer service.","sanitized_name":"@midnight-ntwrk/wallet-sdk-indexer-client","publisher":{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"},"maintainers":[{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"}],"license":"Apache-2.0","date":"2026-05-27T07:41:17.042Z","links":{"homepage":"https://github.com/midnight-ntwrk/artifacts#readme","repository":"git+https://github.com/midnight-ntwrk/artifacts.git","bugs":"https://github.com/midnight-ntwrk/artifacts/issues","npm":"https://www.npmjs.com/package/@midnight-ntwrk/wallet-sdk-indexer-client"}}
+
+,
+
+{"name":"@midnight-ntwrk/wallet-sdk-abstractions","keywords":[],"version":"2.1.0","description":"Domain-specific abstractions for the wallet SDK","sanitized_name":"@midnight-ntwrk/wallet-sdk-abstractions","publisher":{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"},"maintainers":[{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"}],"license":"Apache-2.0","date":"2026-04-23T17:47:01.776Z","links":{"homepage":"https://github.com/midnight-ntwrk/artifacts#readme","repository":"git+https://github.com/midnight-ntwrk/artifacts.git","bugs":"https://github.com/midnight-ntwrk/artifacts/issues","npm":"https://www.npmjs.com/package/@midnight-ntwrk/wallet-sdk-abstractions"}}
+
+,
+
+{"name":"@midnight-ntwrk/wallet-sdk-unshielded-wallet","keywords":[],"version":"3.1.0","description":"Manages unshielded tokens on the Midnight network.","sanitized_name":"@midnight-ntwrk/wallet-sdk-unshielded-wallet","publisher":{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"},"maintainers":[{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"}],"license":"Apache-2.0","date":"2026-05-27T07:41:27.287Z","links":{"homepage":"https://github.com/midnight-ntwrk/artifacts#readme","repository":"git+https://github.com/midnight-ntwrk/artifacts.git","bugs":"https://github.com/midnight-ntwrk/artifacts/issues","npm":"https://www.npmjs.com/package/@midnight-ntwrk/wallet-sdk-unshielded-wallet"}}
+
+,
+
+{"name":"@midnight-ntwrk/wallet-sdk-capabilities","keywords":[],"version":"3.3.1","description":"Internal wallet capabilities for transaction balancing on the Midnight network.","sanitized_name":"@midnight-ntwrk/wallet-sdk-capabilities","publisher":{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"},"maintainers":[{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"}],"license":"Apache-2.0","date":"2026-05-27T07:41:05.811Z","links":{"homepage":"https://github.com/midnight-ntwrk/artifacts#readme","repository":"git+https://github.com/midnight-ntwrk/artifacts.git","bugs":"https://github.com/midnight-ntwrk/artifacts/issues","npm":"https://www.npmjs.com/package/@midnight-ntwrk/wallet-sdk-capabilities"}}
+
+,
+
+{"name":"@midnight-ntwrk/wallet-sdk-shielded","keywords":[],"version":"3.0.1","description":"Manages shielded tokens on the Midnight network using zero-knowledge proofs.","sanitized_name":"@midnight-ntwrk/wallet-sdk-shielded","publisher":{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"},"maintainers":[{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"}],"license":"Apache-2.0","date":"2026-05-27T07:41:26.431Z","links":{"homepage":"https://github.com/midnight-ntwrk/artifacts#readme","repository":"git+https://github.com/midnight-ntwrk/artifacts.git","bugs":"https://github.com/midnight-ntwrk/artifacts/issues","npm":"https://www.npmjs.com/package/@midnight-ntwrk/wallet-sdk-shielded"}}
+
+,
+
+{"name":"@midnight-ntwrk/midnight-js-protocol","keywords":[],"version":"4.1.1","description":"Protocol type re-exports for midnight-js framework","sanitized_name":"@midnight-ntwrk/midnight-js-protocol","publisher":{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"},"maintainers":[{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"}],"license":"Apache-2.0","date":"2026-06-02T11:15:10.484Z","links":{"homepage":"https://github.com/midnight-ntwrk/artifacts#readme","repository":"git+ssh://git@github.com/midnight-ntwrk/artifacts.git","bugs":"https://github.com/midnight-ntwrk/artifacts/issues","npm":"https://www.npmjs.com/package/@midnight-ntwrk/midnight-js-protocol"}}
+
+,
+
+{"name":"@midnight-ntwrk/compact-js","keywords":[],"version":"2.5.3","description":"Typescript-based execution environment for smart contracts compiled with the Compact language","sanitized_name":"@midnight-ntwrk/compact-js","publisher":{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"},"maintainers":[{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"}],"license":"Apache-2.0","date":"2026-07-07T09:25:55.507Z","links":{"homepage":"https://github.com/midnight-ntwrk/artifacts#readme","repository":"git+ssh://git@github.com/midnight-ntwrk/artifacts.git","bugs":"https://github.com/midnight-ntwrk/artifacts/issues","npm":"https://www.npmjs.com/package/@midnight-ntwrk/compact-js"}}
+
+,
+
+{"name":"@midnight-ntwrk/compact-runtime","keywords":[],"version":"0.16.0","description":"Compact Runtime","sanitized_name":"@midnight-ntwrk/compact-runtime","publisher":{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"},"maintainers":[{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"}],"license":"Apache-2.0","date":"2026-04-29T14:59:47.458Z","links":{"homepage":"https://github.com/LFDT-Minokawa/compact#readme","repository":"git+https://github.com/LFDT-Minokawa/compact.git","bugs":"https://github.com/LFDT-Minokawa/compact/issues","npm":"https://www.npmjs.com/package/@midnight-ntwrk/compact-runtime"}}
+
+,
+
+{"name":"@midnight-ntwrk/wallet-sdk-node-client","keywords":[],"version":"1.1.2","description":"Client for communicating with the Midnight blockchain node.","sanitized_name":"@midnight-ntwrk/wallet-sdk-node-client","publisher":{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"},"maintainers":[{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"}],"license":"Apache-2.0","date":"2026-05-27T07:41:19.422Z","links":{"homepage":"https://github.com/midnight-ntwrk/artifacts#readme","repository":"git+https://github.com/midnight-ntwrk/artifacts.git","bugs":"https://github.com/midnight-ntwrk/artifacts/issues","npm":"https://www.npmjs.com/package/@midnight-ntwrk/wallet-sdk-node-client"}}
+
+,
+
+{"name":"@midnight-ntwrk/wallet-sdk-prover-client","keywords":[],"version":"1.2.2","description":"Client for interacting with the Midnight ZK proof generation service.","sanitized_name":"@midnight-ntwrk/wallet-sdk-prover-client","publisher":{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"},"maintainers":[{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"}],"license":"Apache-2.0","date":"2026-05-27T07:41:22.430Z","links":{"homepage":"https://github.com/midnight-ntwrk/artifacts#readme","repository":"git+https://github.com/midnight-ntwrk/artifacts.git","bugs":"https://github.com/midnight-ntwrk/artifacts/issues","npm":"https://www.npmjs.com/package/@midnight-ntwrk/wallet-sdk-prover-client"}}
+
+,
+
+{"name":"@midnight-ntwrk/wallet-sdk-dust-wallet","keywords":[],"version":"4.1.0","description":"Manages dust (transaction fees) on the Midnight network.","sanitized_name":"@midnight-ntwrk/wallet-sdk-dust-wallet","publisher":{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"},"maintainers":[{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"}],"license":"Apache-2.0","date":"2026-05-27T07:41:09.460Z","links":{"homepage":"https://github.com/midnight-ntwrk/artifacts#readme","repository":"git+https://github.com/midnight-ntwrk/artifacts.git","bugs":"https://github.com/midnight-ntwrk/artifacts/issues","npm":"https://www.npmjs.com/package/@midnight-ntwrk/wallet-sdk-dust-wallet"}}
+
+,
+
+{"name":"@midnight-ntwrk/midnight-js","keywords":[],"version":"4.1.1","description":"Barrel package for Midnight.js core framework","sanitized_name":"@midnight-ntwrk/midnight-js","publisher":{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"},"maintainers":[{"email":"midnight-automation+npm@iohk.io","username":"ntwrk-bot"}],"license":"Apache-2.0","date":"2026-06-02T11:13:55.752Z","links":{"homepage":"https://github.com/midnight-ntwrk/artifacts#readme","repository":"git+ssh://git@github.com/midnight-ntwrk/artifacts.git","bugs":"https://github.com/midnight-ntwrk/artifacts/issues","npm":"https://www.npmjs.com/package/@midnight-ntwrk/midnight-js"}}
+]
+

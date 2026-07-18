@@ -31,7 +31,6 @@ export default defineConfig({
       '@subsquid/scale-codec'
     ],
     exclude: [
-      '@midnight-ntwrk/midnight-js-contracts',
       '@midnight-ntwrk/ledger-v8',
     ]
   },
