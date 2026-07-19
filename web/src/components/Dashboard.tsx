@@ -22,7 +22,7 @@ export const Dashboard: React.FC = () => {
 
   const handleMint = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!contract || !account) return;
+    if (!account) return;
 
     setIsMinting(true);
     try {
@@ -36,7 +36,8 @@ export const Dashboard: React.FC = () => {
 
       const tx = await contract.callTx.mintCard(BigInt(numLimit), BigInt(expiryTs), seed);
       
-      const commitmentBytes = tx.private.result;
+      // Fix: Midnight-JS circuit returns are usually in public.result
+      const commitmentBytes = tx.public?.result ?? tx.private?.result;
       const commitmentHex = commitmentBytes ? toHex(commitmentBytes) : seedHex;
 
       setActiveCard({
@@ -89,7 +90,9 @@ export const Dashboard: React.FC = () => {
                   <Shield className="w-12 h-12 text-blue-500 animate-pulse relative z-10" />
                   <div className="absolute inset-0 bg-blue-500 blur-xl opacity-20 group-hover:opacity-50 transition-opacity duration-500"></div>
                 </div>
-                <span>DE<span className="text-teal-400">ca</span>FI <span className="text-blue-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]">Confidential</span> Commerce</span>
+                <span>DE<span className="text-teal-400">ca</span>FI</span>
+                <span className="text-blue-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]">Confidential</span>
+                <span>Commerce</span>
               </h1>
               
               <div className="retro text-slate-400 max-w-2xl mx-auto mb-6 text-[10px] md:text-[12px] leading-6 border-l-4 border-r-4 border-blue-900/50 px-6 py-2 bg-slate-900/50 backdrop-blur-sm">

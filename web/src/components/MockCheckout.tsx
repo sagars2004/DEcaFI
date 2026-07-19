@@ -24,7 +24,7 @@ export const MockCheckout: React.FC<MockCheckoutProps> = ({ activeCard }) => {
 
   const handleCheckout = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!contract) return;
+
 
     setStatus('processing');
     setErrorMessage('');
@@ -58,11 +58,10 @@ export const MockCheckout: React.FC<MockCheckoutProps> = ({ activeCard }) => {
         // Simulate network delay
         await new Promise(resolve => setTimeout(resolve, 1500));
         
-        console.log('Simulated spend successful!');
         setStatus('approved');
         return;
       }
-
+      
       // The spend circuit takes: (commitment, amount, limit, expiry, nullifier_seed, current_time)
       const tx = await contract.callTx.spend(
         commitmentBytes,

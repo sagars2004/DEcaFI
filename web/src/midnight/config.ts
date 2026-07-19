@@ -1,12 +1,12 @@
 import state from '../../../.midnight-state.json';
 
 // In a real app, you would select this based on environment or URL params.
-export const NETWORK = 'undeployed';
+export const NETWORK = 'preprod';
 
 export const NETWORK_CONFIG = {
-  indexer: 'http://127.0.0.1:8088/api/v4/graphql',
-  indexerWS: 'ws://127.0.0.1:8088/api/v4/graphql/ws',
-  node: 'ws://127.0.0.1:9944',
+  indexer: 'https://indexer.preprod.midnight.network/api/v1/graphql',
+  indexerWS: 'wss://indexer.preprod.midnight.network/api/v1/graphql/ws',
+  node: 'wss://rpc.preprod.midnight.network',
   proofServer: 'http://127.0.0.1:6300',
 };
 

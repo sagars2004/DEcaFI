@@ -58,14 +58,14 @@ export const MidnightProvider: React.FC<{ children: ReactNode }> = ({ children }
       }
 
       const walletApi = mnWindow[walletKey];
-      // 1. Connect to Lace Wallet
-      const laceWallet = walletApi.enable ? await walletApi.enable() : await walletApi.connect('undeployed');
+      // 1. Connect to Wallet (Force simulated fallback as requested)
+      const laceWallet = walletApi.connect ? await walletApi.connect('preprod') : await walletApi.enable();
       setWallet(laceWallet);
 
       // Set the global network ID required by midnight-js v4+
       const { setNetworkId } = await import('@midnight-ntwrk/midnight-js-network-id');
       try {
-        setNetworkId('undeployed'); 
+        setNetworkId('preprod'); 
       } catch (e) {
         // In case it's already set or fails, we can ignore or log.
         console.warn('setNetworkId error:', e);
@@ -179,17 +179,22 @@ export const MidnightProvider: React.FC<{ children: ReactNode }> = ({ children }
       setProviders(p);
 
       // 3. Connect to the Contract
-      const compiledContract = CompiledContract.make('mask', MaskContract.Contract).pipe(
-        CompiledContract.withVacantWitnesses,
-      );
+      let contractHandle = null;
+      try {
+        const compiledContract = CompiledContract.make('mask', MaskContract.Contract).pipe(
+          CompiledContract.withVacantWitnesses,
+        );
 
-      console.log('Using contract address:', CONTRACT_ADDRESS);
-      const contractHandle = await findDeployedContract(p, {
-        contractAddress: CONTRACT_ADDRESS,
-        compiledContract: compiledContract as any,
-        privateStateId: 'decafiPrivateState-v2',
-        initialPrivateState: {},
-      });
+        console.log('Using contract address:', CONTRACT_ADDRESS);
+        contractHandle = await findDeployedContract(p, {
+          contractAddress: CONTRACT_ADDRESS,
+          compiledContract: compiledContract as any,
+          privateStateId: 'decafiPrivateState-v2',
+          initialPrivateState: {},
+        });
+      } catch (err) {
+        console.warn('Simulated fallback active: no contract deployed on this network.', err);
+      }
 
       setContract(contractHandle);
     } catch (err: any) {
