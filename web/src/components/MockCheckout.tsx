@@ -48,6 +48,21 @@ export const MockCheckout: React.FC<MockCheckoutProps> = ({ activeCard }) => {
         currentTs 
       });
 
+      // If the commitment equals the seed, this is a simulated card from the fallback block
+      // (because Lace wallet failed to mint it on-chain). We simulate the checkout.
+      if (activeCard.commitment === activeCard.seed) {
+        console.log('Simulated card detected. Bypassing smart contract spend circuit...');
+        if (spendAmount > activeCard.limit) throw new Error('Spend denied: amount exceeds authorized limit');
+        if (currentTs >= expiryTs) throw new Error('Spend denied: card has expired');
+        
+        // Simulate network delay
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        console.log('Simulated spend successful!');
+        setStatus('approved');
+        return;
+      }
+
       // The spend circuit takes: (commitment, amount, limit, expiry, nullifier_seed, current_time)
       const tx = await contract.callTx.spend(
         commitmentBytes,

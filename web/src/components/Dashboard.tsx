@@ -36,7 +36,7 @@ export const Dashboard: React.FC = () => {
 
       const tx = await contract.callTx.mintCard(BigInt(numLimit), BigInt(expiryTs), seed);
       
-      const commitmentBytes = tx.public.result;
+      const commitmentBytes = tx.private.result;
       const commitmentHex = commitmentBytes ? toHex(commitmentBytes) : seedHex;
 
       setActiveCard({
@@ -179,12 +179,12 @@ export const Dashboard: React.FC = () => {
           </BentoItem>
 
           {/* Privacy Preserving Block */}
-          <BentoItem className="col-span-1 md:col-span-1 row-span-1 border-red-500 bg-red-950/20 p-6 flex flex-col justify-center min-h-[200px]">
-            <h3 className="retro text-red-400 text-sm mb-3 flex items-center">
-              <Shield className="w-4 h-4 mr-2" />
+          <BentoItem className="col-span-1 md:col-span-1 row-span-1 border-orange-500 bg-orange-950/20 p-6 flex flex-col justify-center min-h-[200px]">
+            <h3 className="retro text-orange-400 text-lg mb-3 flex items-center">
+              <Shield className="w-5 h-5 mr-2" />
               Privacy Preserving
             </h3>
-            <p className="retro text-[10px] text-slate-400 leading-relaxed">
+            <p className="retro text-sm text-slate-300 leading-relaxed">
               Transactions are secured using Zero-Knowledge Proofs. Your spending limits and history remain completely private on-chain while still being cryptographically verifiable by merchants.
             </p>
           </BentoItem>
