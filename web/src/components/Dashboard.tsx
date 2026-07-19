@@ -67,20 +67,41 @@ export const Dashboard: React.FC = () => {
   return (
     <div className="w-full flex-grow p-4 sm:p-6 lg:p-8 flex flex-col items-center">
       {!account ? (
-        <div className="w-full max-w-4xl flex flex-col items-center justify-center py-20 text-center">
-          <BentoItem className="w-full p-12 border-blue-500 shadow-[8px_8px_0_0_#1e3a8a]">
-            <h1 className="retro text-3xl md:text-5xl mb-6 text-slate-100 uppercase leading-relaxed flex flex-col items-center gap-4">
-              <Shield className="w-16 h-16 text-blue-500" />
-              <span>DEcaFI<br/><span className="text-blue-400 text-2xl md:text-4xl">Confidential</span><br/><span className="text-2xl md:text-4xl">Commerce</span></span>
-            </h1>
-            <p className="retro text-slate-400 max-w-2xl mx-auto mb-10 text-[10px] md:text-[12px] leading-6">
-              Mint zero-knowledge virtual cards.<br/>
-              Spend anonymously.<br/>
-              Protect your financial data.
-            </p>
-            <div className="animate-pulse retro text-green-400 text-[10px] md:text-[12px] mt-8 flex items-center justify-center gap-2">
-              <Terminal className="w-4 h-4" />
-              [ CONNECT LACE WALLET TO INITIALIZE ]
+        <div className="w-full max-w-4xl flex flex-col items-center justify-center py-8 text-center animate-in fade-in slide-in-from-bottom-8 duration-700">
+          <BentoItem className="w-full border-blue-500 shadow-[8px_8px_0_0_#1e3a8a] relative overflow-hidden group p-0">
+            {/* Retro Window Top Bar */}
+            <div className="bg-blue-900 border-b-4 border-blue-500 px-4 py-2 flex justify-between items-center relative z-10">
+              <div className="flex gap-2">
+                <div className="w-3 h-3 bg-red-500 rounded-none border-2 border-red-700 shadow-sm"></div>
+                <div className="w-3 h-3 bg-yellow-500 rounded-none border-2 border-yellow-700 shadow-sm"></div>
+                <div className="w-3 h-3 bg-green-500 rounded-none border-2 border-green-700 shadow-sm"></div>
+              </div>
+              <span className="retro text-[10px] text-blue-300 mr-8">SYS_INIT: DEcaFI.exe</span>
+              <div className="w-8"></div>
+            </div>
+
+            {/* Subtle Grid Background */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e3a8a_1px,transparent_1px),linear-gradient(to_bottom,#1e3a8a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_20%,transparent_100%)] opacity-20 pointer-events-none group-hover:opacity-40 transition-opacity duration-1000"></div>
+
+            <div className="p-8 relative z-10">
+              <h1 className="retro text-2xl md:text-4xl mb-4 text-slate-100 uppercase leading-tight flex flex-col items-center gap-2">
+                <div className="relative mb-2">
+                  <Shield className="w-12 h-12 text-blue-500 animate-pulse relative z-10" />
+                  <div className="absolute inset-0 bg-blue-500 blur-xl opacity-20 group-hover:opacity-50 transition-opacity duration-500"></div>
+                </div>
+                <span>DE<span className="text-teal-400">ca</span>FI <span className="text-blue-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]">Confidential</span> Commerce</span>
+              </h1>
+              
+              <div className="retro text-slate-400 max-w-2xl mx-auto mb-6 text-[10px] md:text-[12px] leading-6 border-l-4 border-r-4 border-blue-900/50 px-6 py-2 bg-slate-900/50 backdrop-blur-sm">
+                <p className="hover:text-white transition-colors cursor-default">&gt; Mint zero-knowledge virtual cards.</p>
+                <p className="hover:text-white transition-colors cursor-default">&gt; Spend anonymously.</p>
+                <p className="hover:text-white transition-colors cursor-default">&gt; Protect your financial data.</p>
+              </div>
+
+              <div className="animate-pulse retro text-green-400 text-[10px] md:text-[12px] mt-4 flex items-center justify-center gap-2 border-[3px] border-green-900 bg-green-950/30 px-6 py-2 inline-flex mx-auto">
+                <Terminal className="w-4 h-4" />
+                [ CONNECT LACE WALLET TO INITIALIZE ]
+              </div>
             </div>
           </BentoItem>
         </div>

@@ -2,7 +2,7 @@
 import { MidnightProvider } from './midnight/MidnightContext';
 import { WalletConnect } from './components/WalletConnect';
 import { Dashboard } from './components/Dashboard';
-import { Shield } from 'lucide-react';
+import { Coffee } from 'lucide-react';
 
 function AppContent() {
   return (
@@ -10,10 +10,12 @@ function AppContent() {
       <header className="relative z-10 border-b-4 border-slate-700 bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="bg-gradient-to-br from-blue-500 to-indigo-600 p-2 rounded-xl">
-              <Shield className="w-6 h-6 text-white" />
+            <div className="bg-gradient-to-br from-orange-500 to-yellow-600 p-2 rounded-xl">
+              <Coffee className="w-6 h-6 text-white" />
             </div>
-            <h1 className="retro text-3xl font-bold tracking-tight text-white shadow-black drop-shadow-md">DEcaFI</h1>
+            <h1 className="retro text-3xl font-bold tracking-tight text-white shadow-black drop-shadow-md">
+              DE<span className="text-teal-400">ca</span>FI
+            </h1>
           </div>
           <WalletConnect />
         </div>
