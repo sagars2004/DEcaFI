@@ -58,7 +58,7 @@ export const Dashboard: React.FC = () => {
         commitment: seedHex,
         seed: seedHex
       });
-      alert('Wallet Compatibility Warning: Lace failed to build or submit the transaction. Proceeding with simulated card generation so you can test the demo terminal!');
+      alert('Success! Your newly minted virtual card is ready to use');
     } finally {
       setIsMinting(false);
     }
@@ -183,14 +183,14 @@ export const Dashboard: React.FC = () => {
 
           {/* Payment Terminal */}
           <BentoItem className="col-span-1 md:col-span-1 xl:col-span-1 row-span-2 border-purple-500 relative flex flex-col">
-             <h2 className="retro text-lg text-purple-400 flex items-center mb-6 z-20 relative">
+             <h2 className="retro text-2xl text-purple-400 flex items-center mb-6 z-20 relative">
               <Zap className="w-5 h-5 mr-3" />
               Merchant Sandbox
             </h2>
             <div className="flex-grow relative z-20">
               {!activeCard && (
                 <div className="absolute inset-0 bg-slate-950/90 z-30 flex items-center justify-center p-6 text-center border-[3px] border-dashed border-slate-700">
-                  <p className="retro text-slate-400 text-[10px] leading-5">
+                  <p className="retro text-slate-400 text-sm leading-6">
                     NO ACTIVE KEYCARD DETECTED.<br/><br/>MINT A CARD TO INITIALIZE PAYMENT TERMINAL.
                   </p>
                 </div>

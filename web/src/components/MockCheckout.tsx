@@ -88,49 +88,49 @@ export const MockCheckout: React.FC<MockCheckoutProps> = ({ activeCard }) => {
         <div className="border-4 border-slate-700 bg-slate-800 p-2">
           <ShoppingBag className="w-6 h-6 text-blue-400" />
         </div>
-        <h3 className="retro text-[14px] text-slate-100">Merchant Checkout</h3>
+        <h3 className="retro text-xl text-slate-100">Merchant Checkout</h3>
       </div>
 
       {status === 'approved' ? (
         <div className="text-center py-8 space-y-4">
           <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-4" />
           <h4 className="retro text-lg text-green-400">Payment Approved!</h4>
-          <p className="retro text-slate-400 text-[10px] leading-5">Your virtual card authorized the transaction successfully without revealing your identity.</p>
-          <button onClick={() => setStatus('idle')} className="btn-secondary w-full mt-4 text-[10px]">New Transaction</button>
+          <p className="retro text-slate-400 text-sm leading-5">Your virtual card authorized the transaction successfully without revealing your identity.</p>
+          <button onClick={() => setStatus('idle')} className="btn-secondary w-full mt-4 text-sm">New Transaction</button>
         </div>
       ) : status === 'denied' ? (
         <div className="text-center py-8 space-y-4">
           <XCircle className="w-12 h-12 text-red-400 mx-auto mb-4" />
           <h4 className="retro text-lg text-red-400">Payment Denied</h4>
-          <p className="retro text-red-300 text-[10px] leading-5">{errorMessage}</p>
-          <button onClick={() => setStatus('idle')} className="btn-secondary w-full mt-4 text-[10px]">Try Again</button>
+          <p className="retro text-red-300 text-sm leading-5">{errorMessage}</p>
+          <button onClick={() => setStatus('idle')} className="btn-secondary w-full mt-4 text-sm">Try Again</button>
         </div>
       ) : (
         <form onSubmit={handleCheckout} className="space-y-6">
           <div className="space-y-4">
             <div className="flex justify-between items-center py-3 border-b-4 border-slate-700">
-              <span className="retro text-[10px] text-slate-400">Cart Total</span>
+              <span className="retro text-sm text-slate-400">Cart Total</span>
               <div className="flex items-center w-36">
-                <span className="retro text-slate-300 mr-2 text-[10px]">$</span>
+                <span className="retro text-slate-300 mr-2 text-sm">$</span>
                 <input
                   type="number"
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
-                  className="retro w-full bg-slate-950 border-4 border-slate-700 py-2 px-2 text-right text-slate-100 focus:border-blue-500 outline-none text-[10px] shadow-inner"
+                  className="retro w-full bg-slate-950 border-4 border-slate-700 py-2 px-2 text-right text-slate-100 focus:border-blue-500 outline-none text-sm shadow-inner"
                   step="0.01"
                 />
               </div>
             </div>
             <div className="flex justify-between items-center py-3">
-              <span className="retro text-[10px] text-slate-200">Total to Pay</span>
-              <span className="retro text-sm text-white">${parseFloat(amount || '0').toFixed(2)}</span>
+              <span className="retro text-sm text-slate-200">Total to Pay</span>
+              <span className="retro text-lg text-white">${parseFloat(amount || '0').toFixed(2)}</span>
             </div>
           </div>
 
           <button
             type="submit"
             disabled={status === 'processing'}
-            className="btn-primary w-full flex items-center justify-center space-x-2 text-[10px]"
+            className="btn-primary w-full flex items-center justify-center space-x-2 text-sm"
           >
             {status === 'processing' ? (
               <Loader2 className="w-5 h-5 animate-spin" />
@@ -139,7 +139,7 @@ export const MockCheckout: React.FC<MockCheckoutProps> = ({ activeCard }) => {
             )}
           </button>
           
-          <p className="retro text-[8px] leading-4 text-center text-slate-500 mt-4">
+          <p className="retro text-sm leading-5 text-center text-slate-500 mt-4">
             A Zero-Knowledge proof will be generated locally. The merchant never sees your real card details or spending history.
           </p>
         </form>
